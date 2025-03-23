@@ -20,9 +20,9 @@
 ///     /// Classical 4th Order Runge-Kutta Method
 ///     name: RK4,
 ///     a: [[0.0, 0.0, 0.0, 0.0],
-///      [0.5, 0.0, 0.0, 0.0],
-///      [0.0, 0.5, 0.0, 0.0],
-///      [0.0, 0.0, 1.0, 0.0]],
+///         [0.5, 0.0, 0.0, 0.0],
+///         [0.0, 0.5, 0.0, 0.0],
+///         [0.0, 0.0, 1.0, 0.0]],
 ///     b: [1.0/6.0, 2.0/6.0, 2.0/6.0, 1.0/6.0],
 ///     c: [0.0, 0.5, 0.5, 1.0],
 ///     order: 4,
@@ -474,11 +474,6 @@ macro_rules! adaptive_runge_kutta_method {
             where
                 F: $crate::System<T, R, C, E>,
             {
-                // Log previous state
-                self.t_prev = self.t;
-                self.y_prev = self.y;
-                self.dydt_prev = self.dydt;
-
                 // Make sure step size isn't too small
                 if self.h.abs() < T::default_epsilon() {
                     self.status = $crate::SolverStatus::StepSize(self.t, self.y.clone());
@@ -495,7 +490,7 @@ macro_rules! adaptive_runge_kutta_method {
                 system.diff(self.t, &self.y, &mut self.k[0]);
                 
                 for i in 1..$stages {
-                    let mut y_stage = self.y.clone();
+                    let mut y_stage = self.y;
                     
                     for j in 0..i {
                         y_stage += self.k[j] * (self.a[i][j] * self.h);
@@ -505,13 +500,13 @@ macro_rules! adaptive_runge_kutta_method {
                 }
                 
                 // Compute higher order solution
-                let mut y_high = self.y.clone();
+                let mut y_high = self.y;
                 for i in 0..$stages {
                     y_high += self.k[i] * (self.b_higher[i] * self.h);
                 }
                 
                 // Compute lower order solution for error estimation
-                let mut y_low = self.y.clone();
+                let mut y_low = self.y;
                 for i in 0..$stages {
                     y_low += self.k[i] * (self.b_lower[i] * self.h);
                 }
@@ -533,6 +528,11 @@ macro_rules! adaptive_runge_kutta_method {
                 
                 // Determine if step is accepted
                 if err_norm <= T::one() {
+                    // Log previous state
+                    self.t_prev = self.t;
+                    self.y_prev = self.y;
+                    self.dydt_prev = self.dydt;
+
                     if self.reject {
                         // Not rejected this time
                         self.n_stiff = 0;
@@ -548,11 +548,12 @@ macro_rules! adaptive_runge_kutta_method {
                     // Update statistics
                     self.steps += 1;
                     self.accepted_steps += 1;
-                    self.evals += $stages;
+                    self.evals += $stages + 1;
                 } else {
                     // Step rejected
                     self.reject = true;
                     self.rejected_steps += 1;
+                    self.evals += $stages;
                     self.status = $crate::SolverStatus::RejectedStep;
                     self.n_stiff += 1;
                     
