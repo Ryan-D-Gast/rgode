@@ -19,7 +19,6 @@ include = [
     "src/**/*",
     "examples/**/*", 
     "assets/*.png",
-    "cargo.toml",
     "README.md",
     "CHANGELOG.md",
     "LICENSE"
