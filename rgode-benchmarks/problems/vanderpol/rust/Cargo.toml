@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rgode = { path = "../../../.." }
 nalgebra = "0.33.2"
+rgode = "0.1.0"
 
 [profile.release]
 opt-level = 3
