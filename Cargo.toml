@@ -10,7 +10,7 @@ homepage = "https://github.com/Ryan-D-Gast/rgode"
 repository = "https://github.com/Ryan-D-Gast/rgode"
 readme = "README.md"
 
-keywords = ["ode", "differential-equations", "numerical", "science", "math", "solver", "equations"]
+keywords = ["ode", "ivp", "differential", "equations", "solver"]
 categories = ["science", "mathematics", "algorithms"]
 
 license = "Apache-2.0"
