@@ -99,7 +99,7 @@ fn main() {
     let system = LogisticGrowth { k: 1.0, m: 10.0 };
     let logistic_growth_ivp = IVP::new(system, t0, tf, y0);
     match logistic_growth_ivp
-        .even(1.0)          // uses TEvalSolout to save with dt of 1.0
+        .even(1.0)          // uses EvenSolout to save with dt of 1.0
         .solve(&mut solver) // Solve the system and return the solution
     {
         Ok(solution) => {
