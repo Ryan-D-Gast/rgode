@@ -52,6 +52,7 @@ use std::time::Instant;
 /// 
 /// * `t` - Vector of time points
 /// * `y` - Vector of state vectors at each time point
+/// * `solout` - Struct of the solution output strategy used
 /// * `status` - Final solver status (Complete or Interrupted)
 /// * `evals` - Number of function evaluations performed
 /// * `steps` - Total number of steps attempted
