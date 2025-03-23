@@ -83,7 +83,7 @@ impl System<f64, 1, 1> for LogisticGrowth {
 }
 ```
 
-Note that for clarity, the `System` is defined with generics `<f64, 1, 1>` where `f64` is the float type and `1, 1` is the dimension of the system of ordinary differential equations. By default the generics are `f64, 1, 1` and thus can be omitted if the system is a single ODE with a `f64` type.
+Note that for clarity, the `System` is defined with generics `<T, R, C>` where `T` is the float type and `R, C` is the dimension of the system of ordinary differential equations. By default the generics are `f64, 1, 1` and thus can be omitted if the system is a single ODE with a `f64` type.
 
 ## Solving an Initial Value Problem (IVP)
 
