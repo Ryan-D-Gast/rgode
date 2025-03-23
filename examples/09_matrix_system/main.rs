@@ -50,10 +50,6 @@ fn main() {
                     println!("t = {:.2}", t);
                     println!("[{:.4}, {:.4}]", y[(0,0)], y[(0,1)]);
                     println!("[{:.4}, {:.4}]", y[(1,0)], y[(1,1)]);
-                    
-                    // Verify it's still approximately a rotation matrix
-                    let det = y[(0,0)] * y[(1,1)] - y[(0,1)] * y[(1,0)];
-                    println!("det = {:.6} (should be close to 1.0)\n", det);
                 }
             }
             
