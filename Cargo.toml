@@ -1,0 +1,42 @@
+[package]
+name = "rgode"
+version = "0.1.0"
+authors = ["Ryan D. Gast <ryan.d.gast@gmail.com>"]
+description = "A Rust library for solving ordinary differential equations."
+edition = "2024"
+
+documentation = "https://docs.rs/rgode"
+homepage = "https://github.com/Ryan-D-Gast/rgode"
+repository = "https://github.com/Ryan-D-Gast/rgode"
+readme = "README.md"
+
+keywords = ["ode", "differential-equations", "numerical", "science", "math", "solver", "equations"]
+categories = ["science", "mathematics", "algorithms"]
+
+license = "Apache-2.0"
+
+include = [
+    "src/**/*",
+    "examples/**/*", 
+    "assets/*.png",
+    "cargo.toml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+]
+
+[features]
+default = []
+polars = ["dep:polars"]
+
+[dependencies]
+nalgebra = "0.33.2"
+polars = { version = "0.46.0", optional = true }
+
+[dev-dependencies]
+criterion = { version = "0.5.1", features = ["html_reports"] }
+
+[[bench]]
+name = "main"
+harness = false
+path = "benches/main.rs"

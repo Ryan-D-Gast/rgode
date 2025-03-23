@@ -1,0 +1,3 @@
+[submodule "rgode-benchmarks"]
+	path = rgode-benchmarks
+	url = https://github.com/Ryan-D-Gast/rgode-benchmarks
