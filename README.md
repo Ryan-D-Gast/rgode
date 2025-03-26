@@ -4,6 +4,8 @@
 
 `rgode` is a Rust library for solving ordinary differential equations (ODEs). The library provides a set of numerical methods and solout implementations for solving initial value problems (IVPs). The library is designed to be easy to use, flexible, and efficient for solving a wide range of ODEs. 
 
+NOTE: This crate has been integrated into a larger crate [differential-equations](https://github.com/Ryan-D-Gast/differential-equations) where future developments will be take place.
+
 ## Table of Contents
 
 - [Solvers](#solvers)
@@ -13,7 +15,7 @@
 - [Installation](#installation)
 - [Notation](#notation)
 - [Running Tests](#running-tests)
-- [Citation](#citation)
+- [Citation](#citation)0
 - [References](#references)
 
 
